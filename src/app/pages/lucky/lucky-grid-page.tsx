@@ -9,8 +9,10 @@ import {draw, queryRaffleAwardList} from "@/apis";
  * 大转盘文档：https://100px.net/docs/grid.html
  * @constructor
  */
+//@ts-ignore
 export function LuckyGridPage({handleRefresh}) {
   const [prizes, setPrizes] = useState([{}])
+  //@ts-ignore
   const myLucky = useRef()
 
   const queryRaffleAwardListHandle = async () => {

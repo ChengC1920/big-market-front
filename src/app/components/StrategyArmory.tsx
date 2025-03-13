@@ -35,10 +35,10 @@ export function StrategyArmory() {
                 transition: "background-color 0.2s ease-in-out",
             }}
             onMouseEnter={(e) => {
-                e.target.style.backgroundColor = "#2563eb"; // hover:bg-blue-600
+                (e.target as HTMLElement).style.backgroundColor = "#2563eb"; // hover:bg-blue-600
             }}
             onMouseLeave={(e) => {
-                e.target.style.backgroundColor = "#3b82f6"; // bg-blue-500
+                (e.target as HTMLElement).style.backgroundColor = "#3b82f6"; // bg-blue-500
             }}
             onFocus={(e) => {
                 e.target.style.outline = "none"; // focus:outline-none

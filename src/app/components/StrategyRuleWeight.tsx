@@ -1,8 +1,9 @@
 import { queryRaffleStrategyRuleWeight } from "@/apis";
 import { useEffect, useState } from "react";
 import { StrategyRuleWeightVO } from "@/types/StrategyRuleWeightVO";
+import { RaffleAwardVO } from "@/types/RaffleAwardVO"; // 假设 RaffleAwardVO 定义在这个文件中
 
-// @ts-ignore
+//@ts-ignore
 export function StrategyRuleWeight({ refresh }) {
     const [strategyRuleWeightVOList, setStrategyRuleWeightVOList] = useState<StrategyRuleWeightVO[]>([]);
 
@@ -19,10 +20,9 @@ export function StrategyRuleWeight({ refresh }) {
         setStrategyRuleWeightVOList(data);
     };
 
-    // 这是你的进度条组件
-    // @ts-ignore
+    // 进度条组件
+    //@ts-ignore
     const ProgressBar = ({ index, total, completed, awards }) => {
-        // 计算完成的百分比
         const percentage = (completed / total) * 100;
 
         return (
@@ -36,37 +36,37 @@ export function StrategyRuleWeight({ refresh }) {
                     {/* 进度条 */}
                     <div
                         style={{
-                            backgroundColor: "#e5e7eb", // 对应 bg-gray-200
-                            borderRadius: "9999px", // 对应 rounded-full
-                            height: "1rem", // 对应 h-4
-                            position: "relative", // 对应 relative
-                            overflow: "hidden", // 对应 overflow-hidden
-                            flexGrow: 1, // 对应 flex-grow
-                            minWidth: "150px", // 增加最小宽度
+                            backgroundColor: "#e5e7eb",
+                            borderRadius: "9999px",
+                            height: "1rem",
+                            position: "relative",
+                            overflow: "hidden",
+                            flexGrow: 1,
+                            minWidth: "150px",
                         }}
                     >
                         {/* 进度条填充部分 */}
                         <div
                             style={{
-                                background: "linear-gradient(to right, #3b82f6, #60a5fa)", // 对应 bg-gradient-to-r from-blue-500 to-blue-400
-                                height: "1rem", // 对应 h-4
-                                borderRadius: "9999px", // 对应 rounded-full
-                                width: `${percentage}%`, // 动态宽度
-                                transition: "width 0.5s ease-in-out", // 添加过渡效果
+                                background: "linear-gradient(to right, #3b82f6, #60a5fa)",
+                                height: "1rem",
+                                borderRadius: "9999px",
+                                width: `${percentage}%`,
+                                transition: "width 0.5s ease-in-out",
                             }}
                         ></div>
                         {/* 进度条文本 */}
                         <div
                             style={{
-                                position: "absolute", // 对应 absolute
-                                right: 0, // 对应 right-0
-                                top: 0, // 对应 top-0
-                                height: "1rem", // 对应 h-4
-                                display: "flex", // 对应 flex
-                                alignItems: "center", // 对应 items-center
-                                justifyContent: "flex-end", // 对应 justify-end
-                                paddingRight: "0.25rem", // 对应 pr-1
-                                width: "100%", // 确保文本容器覆盖整个进度条宽度
+                                position: "absolute",
+                                right: 0,
+                                top: 0,
+                                height: "1rem",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "flex-end",
+                                paddingRight: "0.25rem",
+                                width: "100%",
                             }}
                         >
                             <span style={{ fontSize: "0.75rem", fontWeight: "600", color: "#1e293b" }}>
@@ -79,11 +79,20 @@ export function StrategyRuleWeight({ refresh }) {
                 {awards && (
                     <div style={{ marginTop: "1rem" }}>
                         <div style={{ fontSize: "0.875rem", color: "#4b5563", fontWeight: "600" }}>必中奖品范围</div>
-                        {awards.map((award, idx) => (
-                            <div key={award.awardId} style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: "0.25rem" }}>
-                                {idx + 1}. {award.awardTitle}
-                            </div>
-                        ))}
+                        {awards.map((award: RaffleAwardVO, idx: number) => {
+                            // 替换 award 对象
+                            const replacedAward: RaffleAwardVO = {
+                                awardId: award.awardId,
+                                awardTitle: "替换后的奖品标题",
+                                awardSubtitle: "替换后的副标题",
+                            };
+
+                            return (
+                                <div key={replacedAward.awardId} style={{ fontSize: "0.75rem", color: "#6b7280", marginTop: "0.25rem" }}>
+                                    {idx + 1}. {replacedAward.awardTitle}
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
             </div>
@@ -91,28 +100,27 @@ export function StrategyRuleWeight({ refresh }) {
     };
 
     useEffect(() => {
-        queryRaffleStrategyRuleWeightHandle().then(r => {
-        });
+        queryRaffleStrategyRuleWeightHandle().then(r => {});
     }, [refresh]);
 
     return (
         <div
             style={{
-                display: "flex", // 使用 Flex 布局
-                gap: "2rem", // 增加间距
-                padding: "1rem", // 增加内边距
-                justifyContent: "space-between", // 让内容均匀分布
-                backgroundColor: "#f9fafb", // 背景颜色
-                borderRadius: "12px", // 圆角
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // 阴影
+                display: "flex",
+                gap: "2rem",
+                padding: "1rem",
+                justifyContent: "space-between",
+                backgroundColor: "#f9fafb",
+                borderRadius: "12px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
             }}
         >
             {strategyRuleWeightVOList.map((ruleWeight, index) => (
                 <div
                     key={index}
                     style={{
-                        flex: 1, // 每个抽奖阶梯平分宽度
-                        maxWidth: "30%", // 限制最大宽度为 30%
+                        flex: 1,
+                        maxWidth: "30%",
                     }}
                 >
                     <ProgressBar
