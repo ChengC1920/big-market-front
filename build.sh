@@ -1,1 +1,1 @@
-docker build -t ninetee19/big-market-front-app:1.0 .
+docker build -t tanghuacheng/big-market-front-app:2.0 .
