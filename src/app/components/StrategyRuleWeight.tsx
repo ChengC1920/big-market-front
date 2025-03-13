@@ -83,8 +83,8 @@ export function StrategyRuleWeight({ refresh }) {
                             // 替换 award 对象
                             const replacedAward: RaffleAwardVO = {
                                 awardId: award.awardId,
-                                awardTitle: "替换后的奖品标题",
-                                awardSubtitle: "替换后的副标题",
+                                awardTitle: award.awardTitle,
+                                awardSubtitle: award.awardSubtitle,
                             };
 
                             return (

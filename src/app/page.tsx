@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import { LuckyWheelPage } from "@/app/pages/lucky/lucky-wheel-page";
 import { LuckyGridPage } from "@/app/pages/lucky/lucky-grid-page";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import {useState} from "react";
 const StrategyArmoryButton = dynamic(async () => (await import("./components/StrategyArmory")).StrategyArmory);
 const ActivityAccountButton = dynamic(async () => (await import("./components/ActivityAccount")).ActivityAccount);
 const CalendarSignButton = dynamic(async () => (await import("./components/CalendarSign")).CalendarSign);
