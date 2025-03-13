@@ -1,0 +1,1 @@
+docker build -t ninetee19/big-market-front-app:1.0 .
